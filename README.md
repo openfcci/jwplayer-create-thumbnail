@@ -1,6 +1,6 @@
 # jwplayer-create-thumbnail
 
-### AWS Lambda and Gateway
+## AWS Lambda and Gateway
 
 [jwplayer-create-thumbnail lambda](https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2#/functions/jwplayer-create-thumbnail?tab=code)
 
@@ -20,7 +20,7 @@ POST Request
 }
 ```
 
-### Description
+## Description
 
 Creates thumbnail based on time for a given WDAY+ live event.
 
