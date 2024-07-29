@@ -298,10 +298,6 @@ const dateCalc = () => {
   }
 }
 
-const isDateInRange = (time, startTime, endTime) => {
-  return time > startTime && time < endTime
-}
-
 const getImage = (imageArr) => {
   let date = dateCalc()
   let time = date.time
