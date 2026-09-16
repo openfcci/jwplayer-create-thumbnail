@@ -4,6 +4,8 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 
 // All times converted to Military time to match UTC hours + minutes, this differentiates between AM/PM for us
+// Optional `days` array restricts an entry to certain days of the week, 0 = Sunday ... 6 = Saturday
+// Entries with no `days` field run every day
 
 let imageObj = {
   // morning
@@ -61,6 +63,7 @@ let imageObj = {
       'https://static.forumcomm.com/images/wdayplus-thumbnails/Bison+Media+Zone+-+Web+Thumbnail+-+Landscape+-+1920+x+1080.jpg',
     startTime: '1020',
     endTime: '1040',
+    days: [3],
   },
   // Bison Saturday
   bisonGameday: {
@@ -68,6 +71,7 @@ let imageObj = {
       'https://static.forumcomm.com/images/wdayplus-thumbnails/Bison+Gameday+-+Web+Thumbnail+-+Landscape+-+1920+x+1080.jpg',
     startTime: '950',
     endTime: '1010',
+    days: [6],
   },
   // evening
   newsFour: {
@@ -110,6 +114,14 @@ let imageObj = {
       'https://static.forumcomm.com/images/wdayplus-thumbnails/WDAY+News+at+10+-+Web+Thumbnail+-+Landscape+-+1920+x+1080.jpg',
     startTime: '2150',
     endTime: '2210',
+  },
+  // Sunday night
+  footballShow: {
+    imageUrl:
+      'https://static.forumcomm.com/images/wdayplus-thumbnails/The+Football+Show.png',
+    startTime: '2225',
+    endTime: '2245',
+    days: [0],
   },
 }
 
@@ -304,8 +316,16 @@ const getImage = (imageArr) => {
   let day = date.day
   let imageUrl = ''
 
-  const image = Object.keys(imageArr).forEach((event) => {
-    if (time > imageArr[event].startTime && time < imageArr[event].endTime) {
+  Object.keys(imageArr).forEach((event) => {
+    const days = imageArr[event].days
+    // skip entries that are restricted to days other than today
+    if (days !== undefined && !days.includes(day)) {
+      return
+    }
+    // compare as numbers, string compare comes up wrong across the 3 to 4 digit boundary
+    const startTime = Number(imageArr[event].startTime)
+    const endTime = Number(imageArr[event].endTime)
+    if (Number(time) > startTime && Number(time) < endTime) {
       imageUrl = imageArr[event].imageUrl
     }
   })
