@@ -37,13 +37,6 @@ let imageObj = {
     endTime: '710',
   },
   // morning
-  agWeek: {
-    imageUrl:
-      'https://static.forumcomm.com/images/wdayplus-thumbnails/AgWeek+TV+-+Web+Thumbnail+-+Landscape+-+1920+x+1080.jpg',
-    startTime: '820',
-    endTime: '840',
-  },
-  // morning
   hotMic: {
     imageUrl:
       'https://static.forumcomm.com/images/wdayplus-thumbnails/Hot+Mic+-+1920+x+1080+-+Web+Thumbnail.jpg',
